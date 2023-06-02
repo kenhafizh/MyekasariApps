@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_marginTop="100dp"
+    android:orientation="vertical"
+    tools:context=".ui.detail.PaymentSuccessFragment">
+
+   <ImageView
+       android:id="@+id/ivLogo"
+       android:layout_width="200dp"
+       android:layout_height="201dp"
+       android:src="@drawable/ic_success_order"/>
+
+    <TextView
+        android:id="@+id/ivTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextView.PoppinsNormal22sp020202"
+        android:text="Berhasil membuat Pesanan"
+        android:gravity="center"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/ivSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextView.PoppinsNormal14sp8D92A3"
+        android:text="Mohon ditunggu nggih, orderan sedang dikirim"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/btnOtherFood"
+        android:fontFamily="@font/poppins"
+        android:textAllCaps="false"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/yellow"
+        android:text="Order other Food"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnMyOrder"
+        android:fontFamily="@font/poppins"
+        android:textAllCaps="false"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/grey"
+        android:text="My Order"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
