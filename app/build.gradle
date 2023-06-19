@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -16,6 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         flavorDimensions "dev"
+        multiDexEnabled true
     }
 
     viewBinding {
@@ -39,7 +41,7 @@ android {
     productFlavors {
         dev {
             applicationId = "com.example.myekasari.dev"
-            buildConfigField "String", "BASE_URL", "\"http://myekasari.test/\""
+            buildConfigField "String", "BASE_URL", "\"https://myekasari-database.site/\""
         }
     }
 
@@ -75,6 +77,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     implementation 'com.airbnb.android:lottie:3.4.4'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    implementation 'com.github.dhaval2404:imagepicker:1.5'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+
+    implementation 'com.readystatesoftware.chuck:library:1.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

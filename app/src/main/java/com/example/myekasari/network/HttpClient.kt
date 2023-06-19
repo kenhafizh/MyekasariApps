@@ -3,8 +3,10 @@ import android.util.Log
 import androidx.viewbinding.BuildConfig
 import androidx.viewbinding.BuildConfig.*
 import com.example.myekasari.BuildConfig.BASE_URL
+import com.example.myekasari.MyEkasari
 import com.example.myekasari.network.Endpoint
 import com.example.myekasari.utils.Helpers
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,7 +40,7 @@ class HttpClient {
     }
 
     private fun buildRetrofitClient() {
-        val token = ""
+        val token = MyEkasari.getApp().getToken()
         buildRetrofitClient(token)
     }
 
@@ -51,6 +53,7 @@ class HttpClient {
             var interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             builder.addInterceptor(interceptor)
+            builder.addInterceptor(ChuckInterceptor(MyEkasari.getApp()))
         }
 
         if (token != null) {
@@ -66,6 +69,7 @@ class HttpClient {
             .build()
         endpoint = null
 
+        Log.v("ken", token.toString())
     }
 
     private fun getInterceptoreWithHeader(headerName : String, headerValue:String) : Interceptor {
@@ -81,10 +85,12 @@ class HttpClient {
             for ((key, value) in headers) {
                 builder.addHeader(key, value)
             }
-            builder.method(original.method(), original.body())
+            builder.method(original.method, original.body)
             it.proceed(builder.build())
         }
     }
+
+
 
 
 

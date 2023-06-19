@@ -18,13 +18,12 @@
             android:orientation="vertical">
 
 
-
             <ImageView
-                android:layout_gravity="center"
-                android:src="@drawable/ic_photo"
+                android:id="@+id/ivProfil"
                 android:layout_width="110dp"
-                android:layout_height="110dp"/>
-
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_photo" />
 
             <TextView
                 style="@style/TextView.PoppinsNormal16sp020202"
@@ -33,6 +32,7 @@
                 android:text="Full Name" />
 
             <EditText
+                android:id="@+id/etFullName"
                 android:layout_marginTop="6dp"
                 android:padding="10dp"
                 style="@style/EditText.PoppinsNormal14sp8D92A3"
@@ -49,6 +49,7 @@
                 android:text="Email Address" />
 
             <EditText
+                android:id="@+id/etEmail"
                 android:layout_marginTop="6dp"
                 android:padding="10dp"
                 style="@style/EditText.PoppinsNormal14sp8D92A3"
@@ -65,6 +66,7 @@
                 android:text="Password"/>
 
             <EditText
+                android:id="@+id/etPassword"
                 android:padding="10dp"
                 style="@style/EditText.PoppinsNormal14sp8D92A3"
                 android:background="@drawable/ic_rectangle_6"
