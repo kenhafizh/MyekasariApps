@@ -65,7 +65,7 @@ class SignupPresenter (private val view: SignupContract.View) : SignupContract.P
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    this.view.dismissLoading()
+                    view.dismissLoading()
 
                     if (it.meta?.status.equals("success",true)){
                         it.data?.let { it1 -> view.onRegisterPhotoSuccess(viewParms) }

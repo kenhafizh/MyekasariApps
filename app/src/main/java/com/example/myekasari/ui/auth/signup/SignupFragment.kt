@@ -43,11 +43,12 @@ class SignupFragment : Fragment() {
     }
 
     private fun initListener() {
-        _binding?.ivProfil?.setOnClickListener{
-            ImagePicker.with(this)
-                .cameraOnly()
-                .start()
-        }
+//        _binding?.ivProfil?.setOnClickListener{
+//            ImagePicker.with(this)
+//                .cameraOnly()
+//                .galleryOnly()
+//                .start()
+//        }
 
         binding?.apply {
             btnContinue.setOnClickListener {
@@ -82,7 +83,7 @@ class SignupFragment : Fragment() {
 
                     (activity as AuthActivity).toolbarSignUpAddress()
                 }
-                }
+            }
 
 
 
@@ -104,7 +105,7 @@ class SignupFragment : Fragment() {
             Glide.with(this)
                 .load(filePath)
                 .apply(RequestOptions.circleCropTransform())
-                .into(binding.ivProfil)
+//                .into(binding.ivProfil)
         } else if (resultCode == ImagePicker.RESULT_ERROR){
             Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {

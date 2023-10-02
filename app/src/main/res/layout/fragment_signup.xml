@@ -18,12 +18,12 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/ivProfil"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_photo" />
+<!--            <ImageView-->
+<!--                android:id="@+id/ivProfil"-->
+<!--                android:layout_width="110dp"-->
+<!--                android:layout_height="110dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:src="@drawable/ic_photo" />-->
 
             <TextView
                 style="@style/TextView.PoppinsNormal16sp020202"

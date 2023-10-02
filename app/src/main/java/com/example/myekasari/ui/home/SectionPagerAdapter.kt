@@ -1,13 +1,19 @@
 package com.example.myekasari.ui.home
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.myekasari.model.response.home.Data
 import com.example.myekasari.ui.home.newtaste.HomeNewTasteFragment
 import com.example.myekasari.ui.home.popular.HomePopularFragment
 import com.example.myekasari.ui.home.recommended.HomeRecommendedFragment
 
 class SectionPagerAdapter (fm:FragmentManager) : FragmentPagerAdapter(fm){
+
+    var newTasteList:ArrayList<Data>? = ArrayList()
+    var popularList:ArrayList<Data>? = ArrayList()
+    var recommendedList:ArrayList<Data>? = ArrayList()
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
@@ -26,21 +32,38 @@ class SectionPagerAdapter (fm:FragmentManager) : FragmentPagerAdapter(fm){
         return when(position) {
             0 -> {
                 fragment = HomeNewTasteFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", newTasteList)
+                fragment.arguments = bundle
                 return fragment
             }
            1 -> {
-                fragment = HomePopularFragment()
-                return fragment
+               fragment = HomePopularFragment()
+               val bundle = Bundle()
+               bundle.putParcelableArrayList("data", popularList)
+               fragment.arguments = bundle
+               return fragment
             }
             2 -> {
                 fragment = HomeRecommendedFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", recommendedList)
+                fragment.arguments = bundle
                 return fragment
             }
             else -> {
                 fragment = HomeNewTasteFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", newTasteList)
+                fragment.arguments = bundle
                 return fragment
             }
         }
     }
 
+    fun setData(newTasteListParms : ArrayList<Data>, popularListParms  : ArrayList<Data>?, recommendedListParms: ArrayList<Data>?) {
+        newTasteList = newTasteListParms
+        popularList = popularListParms
+        recommendedList = recommendedListParms
+    }
 }

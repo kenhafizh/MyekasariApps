@@ -5,7 +5,6 @@ import com.example.myekasari.base.BasePresenter
 import com.example.myekasari.base.BaseView
 import com.example.myekasari.model.request.RegisterRequest
 import com.example.myekasari.model.response.login.LoginResponse
-import java.nio.file.Path
 
 interface SignupContract {
 

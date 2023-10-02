@@ -7,6 +7,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializer
 import java.text.DecimalFormat
+import java.text.Format
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -25,6 +26,7 @@ object Helpers {
 
     fun getDefaultGson() : Gson {
         return GsonBuilder()
+            .setLenient()
             .excludeFieldsWithoutExposeAnnotation()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .registerTypeAdapter(Date::class.java, JsonDeserializer{ json, _, _, ->
@@ -41,5 +43,12 @@ object Helpers {
                     null
                 }
             }).create()
+    }
+
+    fun Long.convertLongtoTime(formatTanggal:String) : String {
+        val date = Date(this)
+        val format = SimpleDateFormat(formatTanggal)
+        return format.format(date)
+
     }
 }

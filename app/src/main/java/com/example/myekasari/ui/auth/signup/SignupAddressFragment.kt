@@ -14,6 +14,7 @@ import com.example.myekasari.databinding.FragmentSignupAddressBinding
 import com.example.myekasari.model.request.RegisterRequest
 import com.example.myekasari.model.response.login.LoginResponse
 import com.example.myekasari.ui.auth.AuthActivity
+import com.example.myekasari.utils.PreferencesHelper
 import com.google.gson.Gson
 
 @Suppress("DEPRECATION")
@@ -29,7 +30,6 @@ class SignupAddressFragment : Fragment(),  SignupContract.View {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-
         _binding = FragmentSignupAddressBinding.inflate(inflater, container,false)
         return binding?.root
     }
@@ -56,12 +56,12 @@ class SignupAddressFragment : Fragment(),  SignupContract.View {
                 var houseNumber = binding.etHouseNumber.text.toString()
                 var city = binding.etCity.text.toString()
 
-//                data.let {
-//                    it.address = address
-//                    it.city = city
-//                    it.houseNumber = houseNumber
-//                    it.phoneNumber = phone
-//                }
+                data.let {
+                    it.address = address
+                    it.city = city
+                    it.houseNumber = houseNumber
+                    it.phoneNumber = phone
+                }
 
 
                 if (phone.isNullOrEmpty()) {
@@ -77,8 +77,8 @@ class SignupAddressFragment : Fragment(),  SignupContract.View {
                     binding.etCity.error = "Masukkan Kota anda"
                     binding.etCity.requestFocus()
                 } else {
-                  //presenter.submitRegister(data, it)
-                    presenter.submitPhotoRegister(data.filePath!!, it)
+                    presenter.submitRegister(data, it)
+//                    presenter.submitPhotoRegister(data.filePath!!, it)
                 }
 
             }
@@ -94,18 +94,19 @@ class SignupAddressFragment : Fragment(),  SignupContract.View {
 
 
     override fun onRegisterSuccess(loginResponse: LoginResponse, view: View) {
-        MyEkasari.getApp().setToken(loginResponse.access_token)
+
+        PreferencesHelper.setToken(loginResponse.access_token)
 
         val gson = Gson()
         val json = gson.toJson(loginResponse.user)
-        MyEkasari.getApp().setUser(json)
+        PreferencesHelper.setUser(json)
 
         if (data.filePath == null) {
             Navigation.findNavController(view)
                 .navigate(R.id.action_signup_success, null)
             (activity as AuthActivity).toolbarSignUpSuccess()
         } else {
-            presenter.submitPhotoRegister(data.filePath!!, view)
+//            presenter.submitPhotoRegister(data.filePath!!, view)
         }
     }
 

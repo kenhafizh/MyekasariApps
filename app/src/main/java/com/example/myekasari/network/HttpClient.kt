@@ -1,12 +1,15 @@
 package com.example.myekasari.network
 import android.util.Log
-import androidx.viewbinding.BuildConfig
-import androidx.viewbinding.BuildConfig.*
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.myekasari.BuildConfig
+
+
 import com.example.myekasari.BuildConfig.BASE_URL
 import com.example.myekasari.MyEkasari
 import com.example.myekasari.network.Endpoint
 import com.example.myekasari.utils.Helpers
-import com.readystatesoftware.chuck.ChuckInterceptor
+import com.example.myekasari.utils.PreferencesHelper
+
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 class HttpClient {
 
@@ -39,26 +43,37 @@ class HttpClient {
         return endpoint
     }
 
-    private fun buildRetrofitClient() {
-        val token = MyEkasari.getApp().getToken()
-        buildRetrofitClient(token)
-    }
-
-    fun buildRetrofitClient(token : String?){
+    fun buildRetrofitClient(){
         val builder = OkHttpClient.Builder()
         builder.connectTimeout(2, TimeUnit.MINUTES)
         builder.readTimeout(2, TimeUnit.MINUTES)
 
-        if (DEBUG) {
+            builder.addInterceptor(Interceptor { chain ->
+                val requestBuilder = chain.request().newBuilder()
+
+                val auth = PreferencesHelper.getToken()
+                auth?.let {
+                    requestBuilder.addHeader(
+                        "Authorization",
+                        "Bearer " + auth
+                    )
+                }
+
+                val request = requestBuilder.build()
+
+                val response = chain.proceed(request)
+
+                response
+            })
+
+
+        if (BuildConfig.DEBUG) {
             var interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             builder.addInterceptor(interceptor)
-            builder.addInterceptor(ChuckInterceptor(MyEkasari.getApp()))
+
         }
 
-        if (token != null) {
-            builder.addInterceptor(getInterceptoreWithHeader("Authorization", "Bearer ${token}"))
-        }
 
         val okHttpClient = builder.build()
         client = Retrofit.Builder()
@@ -69,7 +84,9 @@ class HttpClient {
             .build()
         endpoint = null
 
-        Log.v("ken", token.toString())
+
+
+//        Log.v("ken", token.toString())
     }
 
     private fun getInterceptoreWithHeader(headerName : String, headerValue:String) : Interceptor {
@@ -88,6 +105,8 @@ class HttpClient {
             builder.method(original.method, original.body)
             it.proceed(builder.build())
         }
+
+
     }
 
 

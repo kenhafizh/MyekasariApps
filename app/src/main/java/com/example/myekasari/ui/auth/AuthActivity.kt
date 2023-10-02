@@ -51,14 +51,14 @@ lateinit var binding: ActivityAuthBinding
 
     fun toolbarSignUp(){
         binding.toolbar.toolbar2.title = "Sign Up"
-        binding.toolbar.toolbar2.subtitle = "Daftar dong kids"
+        binding.toolbar.toolbar2.subtitle = "Daftar User"
         binding.toolbar.toolbar2.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
         binding.toolbar.toolbar2.setNavigationOnClickListener { onBackPressed() }
     }
 
     fun toolbarSignUpAddress(){
         binding.toolbar.toolbar2.title = "Address"
-        binding.toolbar.toolbar2.subtitle = "Isi yang benar plz"
+        binding.toolbar.toolbar2.subtitle = "Isi dengan benar"
         binding.toolbar.toolbar2.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
         binding.toolbar.toolbar2.setNavigationOnClickListener { onBackPressed() }
     }

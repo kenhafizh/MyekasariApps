@@ -41,14 +41,14 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btnMyOrder"
-        android:fontFamily="@font/poppins"
-        android:textAllCaps="false"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/grey"
-        android:text="My Order"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+<!--    <Button-->
+<!--        android:id="@+id/btnMyOrder"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginBottom="12dp"-->
+<!--        android:backgroundTint="@color/grey"-->
+<!--        android:text="My Order"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"/>-->
 </LinearLayout>
